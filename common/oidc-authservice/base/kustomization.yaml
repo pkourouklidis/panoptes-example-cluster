@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
 - service.yaml
 - statefulset.yaml
-- envoy-filter.yaml
+#remove for now so that we don't have to supply jwt to ingress requests
+# - envoy-filter.yaml
 - pvc.yaml
 
 namespace: istio-system
