@@ -12342,11 +12342,11 @@ data:
     }
   ingress: |-
     {
-        "ingressGateway" : "knative-serving/knative-ingress-gateway",
+        "ingressGateway" : "kubeflow/kubeflow-gateway",
         "ingressService" : "istio-ingressgateway.istio-system.svc.cluster.local",
         "localGateway" : "knative-serving/knative-local-gateway",
         "localGatewayService" : "knative-local-gateway.istio-system.svc.cluster.local",
-        "ingressDomain"  : "example.com"
+        "ingressDomain"  : "panoptes.uk"
     }
   logger: |-
     {
@@ -12487,7 +12487,7 @@ metadata:
 ---
 apiVersion: v1
 data:
-  ingressGateway: knative-serving/knative-ingress-gateway
+  ingressGateway: kubeflow/kubeflow-gateway
 kind: ConfigMap
 metadata:
   name: kserve-config
