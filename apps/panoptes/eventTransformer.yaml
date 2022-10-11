@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-transformer
+  namespace: panoptes
+spec:
+  selector:
+    matchLabels:
+      app: event-transformer
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: event-transformer
+    spec:
+      containers:
+      - image: registry.docker.nat.bt.com/panoptes/event-transformer:latest
+        name: event-transformer
+        ports:
+        - containerPort: 5000
+        env:
+        - name: brokerEndpoint
+          value: http://broker-ingress.knative-eventing.svc.cluster.local/panoptes/default
+      imagePullSecrets:
+      - name: panoptes-registry-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-transformer
+  namespace: panoptes
+spec:
+  ports:
+  - port: 80
+    targetPort: 5000
+  selector:
+    app: event-transformer

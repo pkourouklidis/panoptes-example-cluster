@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: panoptes-orchestrator
+  namespace: panoptes
+spec:
+  selector:
+    matchLabels:
+      app: panoptes-orchestrator
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: panoptes-orchestrator
+    spec:
+      containers:
+      - image: registry.docker.nat.bt.com/panoptes/orchestrator:latest
+        name: orchestrator
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: panoptes-registry-credentials
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: panoptes-orchestrator
+  namespace: panoptes
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: panoptes-orchestrator
+---
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: panoptes-orchestrator
+  namespace: panoptes
+spec:
+  hosts:
+  - orchestrator.panoptes.uk
+  gateways:
+  - kubeflow/kubeflow-gateway
+  http:
+  - route:
+    - destination:
+        host: panoptes-orchestrator
+        port:
+          number: 80
