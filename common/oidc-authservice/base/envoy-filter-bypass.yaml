@@ -1,0 +1,76 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: EnvoyFilter
+metadata:
+  name: authn-filter-bypass
+  namespace: istio-system
+spec:
+  workloadSelector:
+    labels:
+      istio: ingressgateway
+  priority: 10
+  configPatches:
+  - applyTo: HTTP_ROUTE
+    match:
+      routeConfiguration:
+        vhost:
+          name: ui.digitaltwin.callcentre.panoptes.betalab.rp.bt.com:443 
+    patch:
+      operation: MERGE
+      value:
+        name: envoy.ext_authz_disabled
+        typed_per_filter_config:
+          envoy.filters.http.ext_authz:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+            disabled: true
+  - applyTo: HTTP_ROUTE
+    match:
+      routeConfiguration:
+        vhost:
+          name: admin-service.digitaltwin.callcentre.panoptes.betalab.rp.bt.com:443
+    patch:
+      operation: MERGE
+      value:
+        name: envoy.ext_authz_disabled
+        typed_per_filter_config:
+          envoy.filters.http.ext_authz:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+            disabled: true
+  - applyTo: HTTP_ROUTE
+    match:
+      routeConfiguration:
+        vhost:
+          name: ui.dashboard.callcentre.panoptes.betalab.rp.bt.com:443
+    patch:
+      operation: MERGE
+      value:
+        name: envoy.ext_authz_disabled
+        typed_per_filter_config:
+          envoy.filters.http.ext_authz:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+            disabled: true
+  - applyTo: HTTP_ROUTE
+    match:
+      routeConfiguration:
+        vhost:
+          name: backend.dashboard.callcentre.panoptes.betalab.rp.bt.com:443
+    patch:
+      operation: MERGE
+      value:
+        name: envoy.ext_authz_disabled
+        typed_per_filter_config:
+          envoy.filters.http.ext_authz:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+            disabled: true
+  - applyTo: HTTP_ROUTE
+    match:
+      routeConfiguration:
+        vhost:
+          name: orchestrator.panoptes.uk:80
+    patch:
+      operation: MERGE
+      value:
+        name: envoy.ext_authz_disabled
+        typed_per_filter_config:
+          envoy.filters.http.ext_authz:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+            disabled: true
