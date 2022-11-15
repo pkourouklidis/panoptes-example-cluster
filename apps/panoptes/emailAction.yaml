@@ -19,9 +19,6 @@ spec:
         name: email-action
         ports:
         - containerPort: 5000
-        env:
-        - name: brokerEndpoint
-          value: http://broker-ingress.knative-eventing.svc.cluster.local/panoptes/default
       imagePullSecrets:
       - name: panoptes-registry-credentials
 ---
