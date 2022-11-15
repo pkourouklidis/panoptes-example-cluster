@@ -21,6 +21,7 @@ spec:
         - containerPort: 5000
       imagePullSecrets:
       - name: panoptes-registry-credentials
+      serviceAccount: retrain-action
 ---
 apiVersion: v1
 kind: Service

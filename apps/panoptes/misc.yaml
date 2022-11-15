@@ -9,6 +9,12 @@ metadata:
   name: algorithm-runtime
   namespace: panoptes
 ---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: retrain-action
+  namespace: panoptes
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -30,6 +36,9 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: algorithm-runtime
+  namespace: panoptes
+- kind: ServiceAccount
+  name: retrain-action
   namespace: panoptes
 roleRef:
   kind: Role
