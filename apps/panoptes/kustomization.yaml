@@ -10,3 +10,4 @@ resources:
 - ./emailAction.yaml
 - ./events.yaml
 - ./secrets.yaml
+- ./retrainAction.yaml
