@@ -104,3 +104,20 @@ spec:
       apiVersion: v1
       kind: Service
       name: email-action
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: retrain-action-trigger
+  namespace: panoptes
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: org.lowcomote.panoptes.actionExecution.trigger
+      subject: retrainAction
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: retrain-action
