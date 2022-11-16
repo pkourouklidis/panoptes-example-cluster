@@ -16,7 +16,7 @@ spec:
         requests:
           cpu: 100m
           memory: 250Mi
-      storageUri: s3://models/callcenter
+      storageUri: s3://models/callcenter-linear-2022-11-16T10:07/
     logger:
       mode: all
       url: http://broker-ingress.knative-eventing.svc.cluster.local/panoptes/default
