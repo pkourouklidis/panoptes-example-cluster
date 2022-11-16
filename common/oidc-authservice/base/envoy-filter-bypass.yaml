@@ -74,3 +74,16 @@ spec:
           envoy.filters.http.ext_authz:
             "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
             disabled: true
+  - applyTo: HTTP_ROUTE
+    match:
+      routeConfiguration:
+        vhost:
+          name: editor.panoptes.uk:80
+    patch:
+      operation: MERGE
+      value:
+        name: envoy.ext_authz_disabled
+        typed_per_filter_config:
+          envoy.filters.http.ext_authz:
+            "@type": type.googleapis.com/envoy.extensions.filters.http.ext_authz.v3.ExtAuthzPerRoute
+            disabled: true
