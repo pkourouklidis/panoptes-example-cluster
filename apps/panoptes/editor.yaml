@@ -15,7 +15,7 @@ spec:
         app: panoptes-editor
     spec:
       containers:
-      - image: pkourouklidis/model-editor:latest
+      - image: registry.docker.nat.bt.com/panoptes/model-editor:latest
         name: editor
         ports:
         - containerPort: 8080
@@ -26,6 +26,8 @@ spec:
       - name: resources-volume
         persistentVolumeClaim:
           claimName: editor-resources
+      imagePullSecrets:
+      - name: panoptes-registry-credentials
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
