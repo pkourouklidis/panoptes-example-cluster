@@ -23,6 +23,22 @@ spec:
 apiVersion: eventing.knative.dev/v1
 kind: Trigger
 metadata:
+  name: event-transformer-response-trigger
+  namespace: panoptes
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: org.kubeflow.serving.inference.response
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: event-transformer
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
   name: orchestrator-sample-trigger
   namespace: panoptes
 spec:
@@ -47,6 +63,23 @@ spec:
   filter:
     attributes:
       type: org.lowcomote.panoptes.trigger.label
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: panoptes-orchestrator
+    uri: /api/v1/events
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: orchestrator-prediction-trigger
+  namespace: panoptes
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: org.lowcomote.panoptes.trigger.prediction
   subscriber:
     ref:
       apiVersion: v1
