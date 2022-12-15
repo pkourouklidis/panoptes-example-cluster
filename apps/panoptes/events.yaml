@@ -148,7 +148,7 @@ spec:
   filter:
     attributes:
       type: org.lowcomote.panoptes.actionExecution.trigger
-      subject: emailAction
+      subject: email
   subscriber:
     ref:
       apiVersion: v1
@@ -165,7 +165,7 @@ spec:
   filter:
     attributes:
       type: org.lowcomote.panoptes.actionExecution.trigger
-      subject: retrainAction
+      subject: retrain
   subscriber:
     ref:
       apiVersion: v1
