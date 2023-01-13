@@ -14,10 +14,19 @@ spec:
     - "*"
   - port:
       number: 443
-      name: https 
+      name: https1 
       protocol: HTTPS
     tls:
       mode: SIMPLE
       credentialName: kubeflow-cert
     hosts:
     - "kubeflow.panoptes.uk"
+  - port:
+      number: 443
+      name: https2 
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: user-namespace-cert
+    hosts:
+    - "*.kubeflow-user-example-com.panoptes.uk"
