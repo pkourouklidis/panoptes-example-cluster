@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
 - install.yaml
 - gateway_authorizationpolicy.yaml
-- deny_all_authorizationpolicy.yaml
+# - deny_all_authorizationpolicy.yaml
 - gateway.yaml
 - x-forwarded-host.yaml
 
