@@ -17006,7 +17006,7 @@ spec:
           - --cluster-resource-namespace=$(POD_NAMESPACE)
           - --leader-election-namespace=kube-system
           - --dns01-recursive-nameservers-only
-          - --dns01-recursive-nameservers="132.146.70.61:53"
+          - --dns01-recursive-nameservers="132.146.5.1:53"
           ports:
           - containerPort: 9402
             protocol: TCP
