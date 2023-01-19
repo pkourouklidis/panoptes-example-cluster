@@ -9,6 +9,7 @@ spec:
     minReplicas: 1
     sklearn:
       protocolVersion: "v2"
+      runtimeVersion: "1.2.3-sklearn"
       resources:
         limits:
           cpu: 100m
@@ -16,7 +17,7 @@ spec:
         requests:
           cpu: 100m
           memory: 250Mi
-      storageUri: s3://models/callcenter-linear-2022-11-16T10:07/
+      storageUri: s3://models/callcenter-linear/
     logger:
       mode: all
       url: http://broker-ingress.knative-eventing.svc.cluster.local/panoptes/default
