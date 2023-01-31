@@ -22,6 +22,10 @@ spec:
         volumeMounts:
         - name: resources-volume
           mountPath: /opt/app/resources
+        resources:
+          requests:
+            cpu: 250m
+            memory: 500Mi
       volumes:
       - name: resources-volume
         persistentVolumeClaim:
