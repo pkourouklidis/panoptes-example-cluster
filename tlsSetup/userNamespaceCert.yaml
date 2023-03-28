@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: user-namespace-cert 
+  namespace: istio-system
+spec:
+  secretName: user-namespace-cert
+  dnsNames:
+  - "*.kubeflow-user-example-com.panoptes.uk"
+  issuerRef:
+    name: panoptes-issuer
+    kind: ClusterIssuer
