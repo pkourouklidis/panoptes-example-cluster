@@ -1,5 +1,8 @@
-# Kubeflow Manifests
+# Panoptes Example Cluster
 
+This repo contains the k8s manifests for deploying an example cluster with an integrated Panoptes installation. It is based on Kubeflow version 1.5. The added manifests are in /apps/panoptes. The following installation instructions from the forked repo are still valid.
+
+---
 ## Table of Contents
 
 <!-- toc -->
